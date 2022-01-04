@@ -12,6 +12,11 @@ export default {
 				id:'att2',
 			}
 		},this.aaa)
+	},
+	created(){
+		this.$destroy(()=>{
+			console.log('mounted');
+		})
 	}
 };
 </script>
