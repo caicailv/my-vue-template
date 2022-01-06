@@ -1,4 +1,11 @@
 
+<template>
+	<div>
+		app
+		<mycm></mycm>
+
+	</div>
+</template>
 <script>
 export default {
 	data() {
@@ -6,17 +13,9 @@ export default {
       aaa:'啊哈啊'
     };
 	},
-	render(h){
-		return h("div",{
-			attrs:{
-				id:'att2',
-			}
-		},this.aaa)
-	},
+
 	created(){
-		this.$destroy(()=>{
-			console.log('mounted');
-		})
+
 	}
 };
 </script>
