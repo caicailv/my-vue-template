@@ -26,6 +26,19 @@ export default {
 			this.lastName = '二';
 		},
 	},
+	watch:{
+		firstName(){
+			console.log('firstName');
+		},
+		useless:[
+			()=>{
+				console.log('a');
+			},
+			()=>{
+				console.log('b');
+			}
+		]
+	},
 	computed: {
 		name() {
 			if (this.useless > 0) {
