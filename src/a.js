@@ -1,19 +1,28 @@
-const camelizeRE = /-(\w)/g
-const camelize = (str) => {
-  console.log('str->', str)
-  return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''))
-}
 
-// 实现缓存函数
-function cached(fn) {
-  const cache = Object.create(null)
-  return function (str) {
-    if (cache[str]) return cache[str]
-    return (cache[str] = fn(str))
+function normalizeProps (options, vm) {
+  const props = options.props
+  if (!props) return
+  const res = {}
+  let i, val, name
+  if (Array.isArray(props)) {
+    i = props.length
+    while (i--) {
+      val = props[i]
+      if (typeof val === 'string') {
+        name = camelize(val)
+        res[name] = { type: null }
+      } else if (process.env.NODE_ENV !== 'production') {
+        warn('props must be strings when using array syntax.')
+      }
+    }
+  } else if (isPlainObject(props)) {
+    for (const key in props) {
+      val = props[key]
+      name = camelize(key)
+      res[name] = isPlainObject(val)
+        ? val     
+        : { type: val }
+    }
   }
+  options.props = res
 }
-
-const camelizeCached = cached(camelize)
- console.log(camelizeCached('str'))
- console.log(camelizeCached('str'))
- console.log(camelizeCached('str'))
