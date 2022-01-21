@@ -1,7 +1,16 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from './js/vue'
+
 
 new Vue({
   el: '#app',
-  render: (h) => h(App),
+  template:`
+  <div>
+  aaa
+  <p>
+  
+  <div>啊啊啊</div>
+  </p>
+  </div>
+  
+  `
 }).$mount()
