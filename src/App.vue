@@ -1,35 +1,32 @@
 
 <template>
 	<div>
-		<p>
-			{{ msg.a }}
-			{{ msg }}
-		</p>
-		<button @click="change">click</button>
-		<mycm ref="r" :a="msg.a"></mycm>
+		<mycm></mycm>
+		<div>
+			<router-link to="/a"> to a </router-link>
+		</div>
+		<div>
+			<router-link to="/b"> to b </router-link>
+		</div>
+
+		<router-view />
 	</div>
 </template>
 <script>
 import mycm from './components/mycm.vue';
 export default {
-	data() {
-		return {
-			msg: {
-				a: 2,
-			},
-		};
-	},
+	name:'app',
 	components: { mycm },
-	computed: {},
+	data() {
+		return {};
+	},
 	methods: {
 		change() {},
 	},
 	created() {},
 	mounted() {
-		console.log('ref', this.$refs.r);
-		setInterval(() => {
-			this.msg.a++;
-		}, 500);
 	},
+	beforeCreate(){
+	}
 };
 </script>

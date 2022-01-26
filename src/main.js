@@ -1,40 +1,26 @@
-import Vue from './js/vue'
-
-const child1 = {
-  template: `<div>child1</div>`,
-  created(){
-    console.log('child1 created');
-  }
-
-}
-
-const child2 = {
-  template: `<div>child2</div>`,
-  created(){
-    console.log('child2 created');
-  }
-}
-
+// import Vue from './js/vue'
+import Vue from 'vue'
+import App from './App.vue'
+import A from './pages/a.vue'
+import B from './pages/b.vue'
+import VueRouter from 'vue-router'
+import myPlugin from './plugin/index'
+console.log('VueRouter', VueRouter)
+Vue.use(VueRouter)
+Vue.use(myPlugin)
+let routes = [
+  {
+    path: '/a',
+    component: A,
+  },
+  {
+    path: '/b',
+    component: B,
+  },
+]
+let router = new VueRouter({ routes })
 new Vue({
   el: '#app',
-  data() {
-    return {
-      currentTabComponent: child1,
-      flag: true,
-    }
-  },
-  created() {
-    setInterval(() => {
-      this.flag = !this.flag
-      this.currentTabComponent = this.flag ? child2 : child1
-    }, 500)
-  },
-  template: `
-  <div>
-  <keepAlive>
-    <Component :is="currentTabComponent" />
-  </keepAlive>
-  </div>
-  
-  `,
+  render: (h) => h(App),
+  router,
 }).$mount()
