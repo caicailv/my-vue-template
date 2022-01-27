@@ -1,28 +1,31 @@
+// 需求 ,实现对于存放于一个数组中的异步任务,进行迭代,完成迭代后再返回结果
+let queue = [
+  (next) => {
+    setTimeout(() => {
+      console.log('1')
+      next()
+    }, 200)
+  },
+  (next) => {
+    setTimeout(next, 200)
+  },
+  (next) => {
+    console.log('3')
+    next()
+  },
+]
 
-function normalizeProps (options, vm) {
-  const props = options.props
-  if (!props) return
-  const res = {}
-  let i, val, name
-  if (Array.isArray(props)) {
-    i = props.length
-    while (i--) {
-      val = props[i]
-      if (typeof val === 'string') {
-        name = camelize(val)
-        res[name] = { type: null }
-      } else if (process.env.NODE_ENV !== 'production') {
-        warn('props must be strings when using array syntax.')
-      }
-    }
-  } else if (isPlainObject(props)) {
-    for (const key in props) {
-      val = props[key]
-      name = camelize(key)
-      res[name] = isPlainObject(val)
-        ? val     
-        : { type: val }
-    }
+let runQueue = (queue, cb) => {
+  const step = (index) => {
+    if (index > queue.length - 1) return cb()
+    queue[index](() => {
+      step(index + 1)
+    })
   }
-  options.props = res
+
+  step(0)
 }
+
+runQueue(queue, () => {
+  console.log('迭代完成')
+})

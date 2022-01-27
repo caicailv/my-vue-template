@@ -1,11 +1,19 @@
 <template>
-  <div>a</div>  
+  <div>a
+    <button @click="push">tototo</button>
+    </div>  
 </template>
 <script>
 export default {
+  methods:{
+    push(){
+      this.$router.push({
+        path:'/a',
+      })
+    }
+
+  },
   created(){
-    // console.log(`this._router`,this._routerRoot);
-    console.log(`this._router`,this.$options.router);
   }
 }
 </script>

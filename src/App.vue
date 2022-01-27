@@ -15,7 +15,7 @@
 <script>
 import mycm from './components/mycm.vue';
 export default {
-	name:'app',
+	name: 'app',
 	components: { mycm },
 	data() {
 		return {};
@@ -23,10 +23,10 @@ export default {
 	methods: {
 		change() {},
 	},
-	created() {},
-	mounted() {
+	created() {
+
 	},
-	beforeCreate(){
-	}
+	mounted() {},
+	beforeCreate() {},
 };
 </script>
