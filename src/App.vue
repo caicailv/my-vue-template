@@ -1,31 +1,24 @@
 
 <template>
 	<div>
-		<mycm></mycm>
-		<div>
-			<router-link to="/a"> to a </router-link>
-		</div>
-		<div>
-			<router-link to="/b"> to b </router-link>
-		</div>
-
-		<router-view />
+		<div>a:{{ a }}</div>
+		<div>b:{{ b }}</div>
 	</div>
 </template>
 <script>
-import mycm from './components/mycm.vue';
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
 export default {
 	name: 'app',
-	components: { mycm },
 	data() {
 		return {};
 	},
+	computed: {
+		...mapState(['a', 'b']),
+	},
 	methods: {
-		change() {},
+		...mapMutations()
 	},
-	created() {
-
-	},
+	created() {},
 	mounted() {},
 	beforeCreate() {},
 };

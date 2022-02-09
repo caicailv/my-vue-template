@@ -1,12 +1,12 @@
 // import Vue from './js/vue'
 import Vue from 'vue'
 import App from './App.vue'
-import myPlugin from './plugin/index'
-import router from './router'
-
-Vue.use(myPlugin)
+import store from './store'
+setTimeout(() => {
+  store.commit("changeA",223)
+}, 1000);
 new Vue({
   el: '#app',
   render: (h) => h(App),
-  router,
+  store,
 }).$mount()
